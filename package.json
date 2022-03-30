@@ -1,0 +1,12 @@
+{
+  "name": "dapp-demo01",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

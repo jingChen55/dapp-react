@@ -1,0 +1,15 @@
+{
+  "version": "independent",
+  "packages": [
+    "packages/*"
+  ],
+  "npmClient": "yarn",
+  "npmClientArgs": [
+    "--production",
+    "--no-optional"
+  ],
+  "ignoreChanges": [
+    "**/*.md",
+    "**/*.spec.ts"
+  ]
+}
