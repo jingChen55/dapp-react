@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import logo from "../assets/images/logo.png";
 
-const NavBarItem = ({ title, classprops }) => ( <li className={`mx-4 cursor-pointer`}>{title}</li> );
+const NavBarItem = ({ title }) => ( <li className={`mx-4 cursor-pointer`}>{title}</li> );
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);

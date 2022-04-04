@@ -9,7 +9,7 @@ export default defineConfig({
     port:8080
   },
   preview: {
-    port:8080
+    port:8089
   },
   build: {
     assetsInlineLimit:30,
