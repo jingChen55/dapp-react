@@ -5,7 +5,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  
+  "scripts": {
+    "start":"lerna bootsrap",
+    "build":"lerna run build"
+  },
   "devDependencies": {
     "lerna": "^4.0.0"
   }
