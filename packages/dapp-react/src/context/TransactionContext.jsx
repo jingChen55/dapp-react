@@ -55,16 +55,15 @@ export const TransactionsProvider = ({ children }) => {
 
   const checkIfWalletIsConnect = async () => {
     try {
-      if (!ethereum) return alert("Please install MetaMask.");
+      if (!ethereum) return alert("请下载钱包 （MetaMask）。");
 
       const accounts = await ethereum.request({ method: "eth_accounts" });
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-
         getAllTransactions();
       } else {
-        console.log("No accounts found");
+        console.log("没有发现账户");
       }
     } catch (error) {
       console.log(error);
@@ -76,7 +75,6 @@ export const TransactionsProvider = ({ children }) => {
       if (ethereum) {
         const transactionsContract = createEthereumContract();
         const currentTransactionCount = await transactionsContract.getTransactionCount();
-
         window.localStorage.setItem("transactionCount", currentTransactionCount);
       }
     } catch (error) {
@@ -88,14 +86,11 @@ export const TransactionsProvider = ({ children }) => {
 
   const connectWallet = async () => {
     try {
-      if (!ethereum) return alert("Please install MetaMask.");
-
+      if (!ethereum) return alert("请下载钱包 （MetaMask）。");
       const accounts = await ethereum.request({ method: "eth_requestAccounts", });
-
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
-
       throw new Error("No ethereum object");
     }
   };
