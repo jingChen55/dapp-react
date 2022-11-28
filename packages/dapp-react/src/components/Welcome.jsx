@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
-import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
+import { SiEthereum } from "react-icons/si";
 
+import { Loader } from ".";
 import { TransactionContext } from "../context/TransactionContext";
 import { shortenAddress } from "../utils/shortenAddress";
-import { Loader } from ".";
 
 const companyCommonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
-const Input = ({ placeholder, name, type, value, handleChange }) => ( <input placeholder={placeholder} type={type} step="0.0001" value={value} onChange={(e) => handleChange(e, name)} className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" /> );
+const Input = ({ placeholder, name, type, value, handleChange }) =>
+(<input placeholder={placeholder} type={type} step="0.0001" value={value}
+  onChange={(e) => handleChange(e, name)}
+  className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" />);
 
 const Welcome = () => {
   const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
@@ -18,7 +21,7 @@ const Welcome = () => {
     const { addressTo, amount, keyword, message } = formData;
 
     e.preventDefault();
-
+    console.log(formData);
     if (!addressTo || !amount || !keyword || !message) return;
 
     sendTransaction();
@@ -51,27 +54,15 @@ const Welcome = () => {
           )}
 
           <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
-            {[{
-              label: "可靠",
-              className:'rounded-tl-2xl'
-              },{
-              label: "安全",
-              className:''
-              },{
-              label: "以太坊",
-              className:'sm:rounded-tr-2xl'
-              },{
-              label: "Web 3.0",
-              className:'sm:rounded-bl-2xl'
-              },{
-              label: "低费用",
-              className:''
-              },{
-              label: "区块链",
-              className:'rounded-br-2xl'
-              },
-            ].map((item) => (
-              <div className={`${item.className} ${companyCommonStyles}`}>{item.label }</div>
+            {[
+              { label: "可靠", className: 'rounded-tl-2xl' },
+              { label: "安全", className: '' },
+              { label: "以太坊", className: 'sm:rounded-tr-2xl' },
+              { label: "Web 3.0", className: 'sm:rounded-bl-2xl' },
+              { label: "低费用", className: '' },
+              { label: "区块链", className: 'rounded-br-2xl' },
+            ].map((item, key) => (
+              <div key={key} className={`${item.className} ${companyCommonStyles}`}>{item.label}</div>
             ))}
           </div>
         </div>
@@ -102,9 +93,9 @@ const Welcome = () => {
             <Input placeholder="输入说明" name="message" type="text" handleChange={handleChange} />
             <div className="h-[1px] w-full bg-gray-400 my-2" />
             {
-              isLoading? <Loader /> : (
+              isLoading ? <Loader /> : (
                 <button type="button" onClick={handleSubmit} className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer" >
-                 发送
+                  发送
                 </button>
               )
             }

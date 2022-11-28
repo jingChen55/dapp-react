@@ -9,8 +9,8 @@ const Footer = () => (
         <img src={logo} alt="logo" className="w-32" />
       </div>
       <div className="flex flex-1 justify-evenly items-center flex-wrap sm:mt-0 mt-5 w-full">
-         {["市场", "兑换", "教程", "钱包"].map((item) => (
-           <p className="text-white text-base text-center mx-2 cursor-pointer">{item}</p>
+        {["市场", "兑换", "教程", "钱包"].map((item, key) => (
+          <p key={key} className="text-white text-base text-center mx-2 cursor-pointer">{item}</p>
         ))}
       </div>
     </div>

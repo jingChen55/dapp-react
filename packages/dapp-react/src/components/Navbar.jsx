@@ -1,13 +1,14 @@
-import React from "react";
-import { HiMenuAlt4 } from "react-icons/hi";
+import React, { useContext } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-
+import { HiMenuAlt4 } from "react-icons/hi";
 import logo from "../assets/images/logo.png";
+import { TransactionContext } from '../context/TransactionContext';
+import { shortenAddress } from '../utils/shortenAddress';
 
-const NavBarItem = ({ title, classprops }) => ( <li className={`mx-4 cursor-pointer`}>{title}</li> );
-
+const NavBarItem = ({ title, classprops }) => (<li className={`${classprops} mx-4 cursor-pointer`}>{title}</li>);
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
+  const { currentAccount, connectWallet } = useContext(TransactionContext);
 
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
@@ -15,12 +16,18 @@ const Navbar = () => {
         <img src={logo} alt="logo" className="w-32 cursor-pointer" />
       </div>
       <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-        {["市场", "兑换", "教程", "钱包"].map((item) => (
-          <NavBarItem classprops="my-2 text-lg"  title={item} />
+        {["市场", "兑换", "教程", "钱包"].map((item,key) => (
+          <NavBarItem key={key} classprops="my-2 text-lg" title={item} />
         ))}
-        <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
-          登录
-        </li>
+        {
+          !currentAccount ?
+            (<li onClick={connectWallet} className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
+              登录
+            </li>)
+            : (<li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
+              {shortenAddress(currentAccount)}
+            </li>)
+        }
       </ul>
       <div className="flex relative">
         {!toggleMenu && (
@@ -36,7 +43,7 @@ const Navbar = () => {
           >
             <li className="text-xl w-full my-2"><AiOutlineClose onClick={() => setToggleMenu(false)} /></li>
             {["市场", "兑换", "教程", "钱包"].map(
-              (item) => <NavBarItem  title={item} classprops="my-2 text-lg" />,
+              (item, key) => <NavBarItem title={item} key={key} classprops="my-2 text-lg" />,
             )}
           </ul>
         )}

@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.7;
 
 import "hardhat/console.sol";
 
@@ -31,7 +31,7 @@ contract Greeter {
         transactions.push( TransferStruct( msg.sender, receiver, amount, message, block.timestamp, keyword ) );
 
         emit Transfer( msg.sender, receiver, amount, message, block.timestamp, keyword );
-    }
+    } 
 
     function getAllTransactions() public view returns (TransferStruct[] memory) {
         return transactions;

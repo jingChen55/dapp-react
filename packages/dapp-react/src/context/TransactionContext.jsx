@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
 
 import { contractABI, contractAddress } from "../utils/constants";
 
 export const TransactionContext = React.createContext();
-
 const { ethereum } = window;
-
+/**
+ * 
+ * @returns 创建合约
+ */
 const createEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
@@ -15,7 +17,7 @@ const createEthereumContract = () => {
   return transactionsContract;
 };
 
-export const TransactionsProvider = ({ children }) => {
+export const TransactionsProvider = (item) => {
   const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -71,21 +73,24 @@ export const TransactionsProvider = ({ children }) => {
     }
   };
 
+
   const checkIfTransactionsExists = async () => {
     try {
       if (ethereum) {
         const transactionsContract = createEthereumContract();
         const currentTransactionCount = await transactionsContract.getTransactionCount();
-
         window.localStorage.setItem("transactionCount", currentTransactionCount);
       }
     } catch (error) {
-      console.log(error);
-
+      console.log("checkIfTransactionsExists==", error);
       throw new Error("No ethereum object");
     }
   };
 
+  /**
+   * 连接钱包
+   * @returns 
+   */
   const connectWallet = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
@@ -95,11 +100,12 @@ export const TransactionsProvider = ({ children }) => {
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
-
       throw new Error("No ethereum object");
     }
   };
-
+  /**
+   * 铸造NFT
+   */
   const sendTransaction = async () => {
     try {
       if (ethereum) {
@@ -138,25 +144,11 @@ export const TransactionsProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    checkIfWalletIsConnect();
-    checkIfTransactionsExists();
-  }, [transactionCount]);
-
+  useEffect(() => { checkIfWalletIsConnect(); checkIfTransactionsExists(); }, [transactionCount]);
+  console.log(item, "itme")
   return (
-    <TransactionContext.Provider
-      value={{
-        transactionCount,
-        connectWallet,
-        transactions,
-        currentAccount,
-        isLoading,
-        sendTransaction,
-        handleChange,
-        formData,
-      }}
-    >
-      {children}
+    <TransactionContext.Provider value={{ transactionCount, connectWallet, transactions, currentAccount, isLoading, sendTransaction, handleChange, formData, }} >
+      {item.children}
     </TransactionContext.Provider>
   );
 };
