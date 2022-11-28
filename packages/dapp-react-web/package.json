@@ -1,5 +1,5 @@
 {
-  "name": "dapp-react",
+  "name": "dapp-react-web",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",

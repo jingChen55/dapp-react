@@ -6,8 +6,9 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start":"lerna bootstrap",
-    "build":"lerna run build"
+    "start": "lerna bootstrap",
+    "build": "lerna run build",
+    "clean": "lerna clean"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
