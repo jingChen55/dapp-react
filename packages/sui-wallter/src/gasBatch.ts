@@ -12,10 +12,11 @@ export async function gasBatch(wallets: { k: string, v: string } [], signer: Raw
     for (let wallet of walletsImport(wallets)) {
         let walletAddress = wallet.getPublicKey().toSuiAddress();
         console.log('临时钱包address:' + walletAddress)
-        let tx = new TransactionBlock();
+        const tx:Uint8Array | TransactionBlock = new TransactionBlock();
         const [coin] = tx.splitCoins(tx.gas, [tx.pure('1000000000')]);
         tx.transferObjects([coin], tx.pure(walletAddress));
-        await signer.signAndExecuteTransactionBlock({transactionBlock: tx});
+      // @ts-ignore
+      await signer.signAndExecuteTransactionBlock({transactionBlock: tx});
     }
     console.log('======================往临时钱包转gas完毕============')
 }

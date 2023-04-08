@@ -1,5 +1,8 @@
 import { Ed25519Keypair } from "@mysten/sui.js";
 
+/**
+ * 
+ */
 export function walletsGenerate() {
     const WALLETS = [];
     const easyWallets = [];
