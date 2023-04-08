@@ -1,0 +1,31 @@
+{
+  "include": [
+    "/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "esModuleInterop": false,
+    "target": "esnext",
+    "module": "esnext",
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "stripInternal": true,
+    "strict": true,
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    /* This needs to be false so our types are possible to consume without setting this */
+    "isolatedModules": true,
+    "skipLibCheck": false,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true
+  }
+}

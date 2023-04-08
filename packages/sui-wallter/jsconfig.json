@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "es2016",
+		"lib": [
+			"es2016",
+			"scripthost"
+		]
+	},
+	"include": [
+		"node_modules/@types/**/*.d.ts",
+		"src/**/*.js",
+		"typings/**/*.d.ts"
+	]
+}

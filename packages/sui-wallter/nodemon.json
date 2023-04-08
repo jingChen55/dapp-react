@@ -1,0 +1,26 @@
+{
+  "verbose": true,
+  "debug": true,
+  "exec": "ts-node  --esm",
+  "ignore": [
+    "mochawesome-report",
+    "node_modules",
+    "./test",
+    "**/*.d.ts",
+    "*.test.ts",
+    "*.spec.ts",
+    "fixtures/*",
+    "test/**/*",
+    "docs/*"
+  ],
+  "events": {
+    "restart": ""
+  },
+  "watch": [
+    "src",
+    "./src/index.ts",
+    "./configs"
+  ],
+  "ext": "ts tsx js",
+  "inspect": true
+}
