@@ -1,4 +1,16 @@
 {
+  "workbench.colorTheme": "GitHub Dark Dimmed",
   "solidity.packageDefaultDependenciesContractsDirectory": "",
-  "solidity.packageDefaultDependenciesDirectory": "node_modules"
+  "solidity.packageDefaultDependenciesDirectory": "node_modules",
+  "jupyter.kernels.filter": [
+    {
+      "type": "jupyterKernelspec",
+      "path": "/usr/share/jupyter/kernels/sample/kernelspec.json"
+    },
+    {
+      "type": "jupyterKernelspec",
+      "path": "~/miniconda3/envs/sample/scripts/python.exe"
+    }
+  ],
+  "docwriter.style": "Google"
 }

@@ -1,6 +1,6 @@
 {
   "include": [
-    "/**/*.ts"
+    "spaceid/**/*.ts"
   ],
   "exclude": [
     "node_modules"
